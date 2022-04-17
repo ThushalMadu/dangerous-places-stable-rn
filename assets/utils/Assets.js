@@ -1,0 +1,10 @@
+export const journeyLogin = require('../images/journeyLogin.png');
+export const stratupPage = require('../images/stratupPage.png');
+export const home = require('../images/home.png');
+export const homeSelect = require('../images/homeSelect.png');
+export const setting = require('../images/setting.png');
+export const settingSelect = require('../images/settingSelect.png');
+export const camera = require('../images/camera.png');
+export const phogreen = require('../images/phogreen.png');
+export const personRound = require('../images/personRound.png');
+export const notification = require('../images/notification.png');
