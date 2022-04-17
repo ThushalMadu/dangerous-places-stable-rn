@@ -6,11 +6,11 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
+  Dimensions,
   StyleSheet,
   Text,
   Platform,
@@ -20,6 +20,8 @@ import * as tf from "@tensorflow/tfjs";
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native';
 import { Camera } from 'expo-camera';
 import * as mobilenet from '@tensorflow-models/mobilenet';
+import * as cocoSsd from '@tensorflow-models/coco-ssd';
+import Canvas from 'react-native-canvas';
 
 const initialiseTensorflow = async () => {
   await tf.ready();
@@ -30,6 +32,9 @@ const initialiseTensorflow = async () => {
 const App = () => {
   const [hasPermission, setHasPermission] = useState < null | boolean > (null);
   const [net, setNet] = useState < mobilenet.MobileNet > ();
+  const [model, setModel] = useState < cocoSsd.ObjectDetection > ();
+  let context = useRef < CanvasRenderingContext2D > ();
+  let canvas = useRef < Canvas > ();
   const TensorCamera = cameraWithTensors(Camera);
   const textureDims = Platform.OS === 'ios' ?
     {
@@ -42,16 +47,21 @@ const App = () => {
     };
   let frame = 0;
   const computeRecognitionEveryNFrames = 60;
-
+  const { width, height } = Dimensions.get("window");
   const handleCameraStream = (images: IterableIterator<tf.Tensor3D>) => {
     const loop = async () => {
       if (net) {
         if (frame % computeRecognitionEveryNFrames === 0) {
           const nextImageTensor = images.next().value;
-          if (nextImageTensor) {
-            const objects = await net.classify(nextImageTensor);
-            console.log(objects.map(object => object.className));
-            tf.dispose([nextImageTensor]);
+          if (nextImageTensor || model) {
+            // const objects = await net.classify(nextImageTensor);
+            // console.log(objects.map(object => object.className));
+            // tf.dispose([nextImageTensor]);
+            model.detect(nextImageTensor).then((prediction) => {
+              console.log("🚀 ~ file: App.js ~ line 60 ~ cocoSsd.ObjectDetection.detect ~ prediction", prediction)
+
+              drawRectange(prediction, nextImageTensor)
+            })
           }
         }
         frame += 1;
@@ -62,6 +72,52 @@ const App = () => {
     }
     loop();
   }
+
+  function drawRectange(predictions: cocoSsd.DetectedObject[], nextImageTensor: any) {
+    if (!context.current || !canvas.current) return;
+
+    const scaleWidth = width / nextImageTensor.shape[1];
+    const scaleHeight = height / nextImageTensor.shape[0];
+
+    const flipHorizontal = Platform.OS == 'ios' ? false : true;
+
+    context.current.clearRect(0, 0, width, height);
+
+    for (const prediction of predictions) {
+      const [x, y, width, height] = prediction.bbox;
+
+      const boundingBoxX = flipHorizontal ? canvas.current.width - x * scaleWidth - width * scaleWidth : x * scaleWidth;
+      const boundingBoyY = y * scaleHeight;
+
+      context.current.strokeRect(
+        boundingBoxX,
+        boundingBoyY,
+        width * scaleWidth,
+        height * scaleHeight
+      );
+      context.current.strokeText(
+        prediction.class,
+        boundingBoxX - 5,
+        boundingBoyY - 5,
+      );
+    }
+
+  }
+
+  function handleCanvas(can: Canvas) {
+    if (can) {
+      can.width = width;
+      can.height = height;
+      const ctx: CanvasRenderingContext2D = can.getContext('2d');
+      ctx.strokeStyle = 'red'
+      ctx.fillStyle = 'red'
+      ctx.lineWidth = 3
+      context.current = ctx;
+      canvas.current = can;
+
+    }
+  }
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -71,6 +127,8 @@ const App = () => {
       await initialiseTensorflow();
       // load the model
       setNet(await mobilenet.load());
+      await tf.ready();
+      setModel(await cocoSsd.load())
 
     })();
   }, []);
@@ -99,6 +157,7 @@ const App = () => {
           cameraTextureHeight={textureDims.height}
           cameraTextureWidth={textureDims.width}
         />
+        <Canvas style={styles.canvas} ref={handleCanvas} />
       </View>
     </SafeAreaView>
   );
@@ -141,8 +200,15 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   highlight: {
-    fontWeight: '700',
+    fontWeight: '300',
   },
+  canvas: {
+    position: "absolute",
+    zIndex: 10000000,
+    width: '100%',
+    height: '100%',
+
+  }
 });
 
 export default App;
