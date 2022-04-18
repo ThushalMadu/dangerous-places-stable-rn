@@ -7,10 +7,15 @@ import {
 import * as Assets from '../../../assets/utils/Assets'
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
+import { SettingsCompo } from "../../components";
+
 export default function SettingView(props) {
     return (
         <View style={styles.contentView}>
-            <Text style={styles.tavelText}>Settings Screen</Text>
+            <SettingsCompo settingsName={"Edit Profile"} settingsType={"editProfile"} />
+            <SettingsCompo settingsName={"Notification"} settingsType={"notification"} />
+            <SettingsCompo settingsName={"Privacy & Policy"} settingsType={"privacy"} />
+            <SettingsCompo settingsName={"About us"} settingsType={"personRound"} />
         </View>
     );
 }

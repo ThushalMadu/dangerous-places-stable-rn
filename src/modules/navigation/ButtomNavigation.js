@@ -72,6 +72,16 @@ export default function App() {
 
                 },
             }}
+            tabBarOptions={{
+                style: {
+                    // borderTopWidth: 0,
+                    // width: '100%',
+                    borderTopLeftRadius: 10,
+                    borderTopRightRadius: 10,
+                    backgroundColor: colors.white,
+                    height: '8%',
+                }
+            }}
         >
             <Tab.Screen
                 name={"Home"}

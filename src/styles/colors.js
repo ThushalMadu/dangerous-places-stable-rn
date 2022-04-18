@@ -8,6 +8,11 @@ const blueVersion = {
   refributtonColor: "#98DFEA",
   shoppingbuttonColor: "#FFA630",
   alucolor: "#A5A5A5",
+  lacolor: "#F0F0F0",
+  laPurple: "#ECEBFF",
+  laBlue: "#E6F7FF",
+  laOrange: "#FEE2CB",
+  laRed: "#FEE8EE",
 };
 
 export default blueVersion;
