@@ -7,6 +7,7 @@ import startUp from '../modules/startUp/StartupState';
 import login from '../modules/login/LoginState';
 import setting from '../modules/settings/SettingState';
 import camera from '../modules/camera/CameraState';
+import detailPlace from '../modules/detailPlace/DetailPlaceState';
 
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   login,
   setting,
   camera,
-  commonStore
+  commonStore,
+  detailPlace
 });
