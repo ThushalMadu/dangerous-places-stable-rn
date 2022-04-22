@@ -14,3 +14,7 @@ export const info = require('../images/info.png');
 export const bell = require('../images/bell.png');
 export const aroudWorld = require('../images/around-the-world.png');
 export const user = require('../images/user.png');
+export const personSettings = require('../images/personSettings.jpg');
+export const back = require('../images/back.png');
+export const detailScreen = require('../images/detailScreen.jpg');
+export const danger = require('../images/danger.png');

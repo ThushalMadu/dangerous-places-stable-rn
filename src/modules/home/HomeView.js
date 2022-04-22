@@ -5,6 +5,7 @@ import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
 import { HomeHeader, PlaceComponent } from "../../components";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import * as Function from './HomeFunction';
 
 export default function HomeView(props) {
   const { width, height } = Dimensions.get("window");
@@ -49,7 +50,7 @@ export default function HomeView(props) {
   ];
 
   function renderPlaceComponent({ item }) {
-    return <PlaceComponent item={item} />;
+    return <PlaceComponent onClickItem={() => Function.onSinglePlace(props, item)} item={item} />;
   }
 
   return (
@@ -82,7 +83,11 @@ export default function HomeView(props) {
             <Text style={styles.cloudyText}>Cloud area 37*</Text>
           </View>
         </View>
+        <View style={styles.middleTopTextButtomcontainer}>
+          <Text style={styles.buttomText}>Near Places Around You</Text>
+        </View>
         <View style={styles.middleButtomcontainer}>
+
           <FlatList
             data={placesList}
             renderItem={renderPlaceComponent}
@@ -148,8 +153,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 20
   },
+  middleTopTextButtomcontainer: {
+    flex: 0.6,
+    alignItems: "flex-start",
+    justifyContent: "center",
+    alignSelf: 'stretch',
+    marginLeft: 5
+  },
   middleMapTopcontainer: {
-    flex: 1,
+    flex: 0.5,
     alignItems: "flex-start",
     justifyContent: "center",
     marginTop: 10,
@@ -174,15 +186,21 @@ const styles = StyleSheet.create({
     fontFamily: fonts.medium,
   },
   wetherConditionText: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.alucolor,
     textAlign: 'left',
     fontFamily: fonts.medium,
   },
   cloudyText: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.black,
     textAlign: 'left',
     fontFamily: fonts.medium,
+  },
+  buttomText: {
+    fontSize: 16,
+    color: colors.black,
+    textAlign: 'left',
+    fontFamily: fonts.bold,
   },
 });

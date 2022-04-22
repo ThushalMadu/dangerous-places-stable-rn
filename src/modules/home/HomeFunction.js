@@ -14,3 +14,7 @@ export function getCuurentLocation(props) {
         { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
     );
 }
+export function onSinglePlace(props) {
+    props.navigation.navigate('DetailPlaceScreen');
+
+}

@@ -4,14 +4,15 @@ import {
     Text,
     StyleSheet,
     Dimensions,
-    Image
+    Image,
+    TouchableOpacity
 } from "react-native";
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import * as Assets from '../../assets/utils/Assets';
 
 const PlaceComponent = (props) => (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={props.onClickItem} style={styles.container}>
         <View style={styles.leftContainer}>
             <Image
                 // resizeMode={'contain'}
@@ -30,18 +31,29 @@ const PlaceComponent = (props) => (
                 <Text style={styles.rightButtomText}>{props.item.riskLevel}</Text>
             </View>
         </View>
-    </View>
+    </TouchableOpacity>
 )
 export default PlaceComponent;
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "row",
-        height: 80,
-        width: Dimensions.get("window").width / 1.1,
+        flex: 1,
+        height: 120,
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 20
+        flexDirection: 'row',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        backgroundColor: colors.white,
+        elevation: 3,
+        margin: 5,
+        width: Dimensions.get('screen').width - 50,
     },
     leftContainer: {
         flex: 2,
@@ -60,7 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     rightMiddleContainer: {
-        flex: 1,
+        flex: 0.4,
         alignItems: 'flex-start',
         width: "100%",
         justifyContent: 'center'
@@ -84,7 +96,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.regular,
     },
     rightButtomText: {
-        fontSize: 16,
+        fontSize: 14,
         color: colors.black,
         textAlign: 'left',
         fontFamily: fonts.medium,
@@ -92,6 +104,6 @@ const styles = StyleSheet.create({
     },
     imgStyle: {
         width: 90,
-        height: 75,
+        height: 90,
     },
 });

@@ -7,15 +7,22 @@ import {
 import * as Assets from '../../../assets/utils/Assets'
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
-import { SettingsCompo } from "../../components";
+import { SettingsCompo, SettingHeader } from "../../components";
 
 export default function SettingView(props) {
     return (
         <View style={styles.contentView}>
-            <SettingsCompo settingsName={"Edit Profile"} settingsType={"editProfile"} />
-            <SettingsCompo settingsName={"Notification"} settingsType={"notification"} />
-            <SettingsCompo settingsName={"Privacy & Policy"} settingsType={"privacy"} />
-            <SettingsCompo settingsName={"About us"} settingsType={"personRound"} />
+            <View style={styles.topHeader}>
+                <SettingHeader />
+            </View>
+            <View style={styles.hiderHeader}>
+            </View>
+            <View style={styles.middleView}>
+                <SettingsCompo settingsName={"Edit Profile"} settingsType={"editProfile"} />
+                <SettingsCompo settingsName={"Notification"} settingsType={"notification"} />
+                <SettingsCompo settingsName={"Privacy & Policy"} settingsType={"privacy"} />
+                <SettingsCompo settingsName={"About us"} settingsType={"personRound"} />
+            </View>
         </View>
     );
 }
@@ -28,9 +35,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: colors.white
     },
-    tavelText: {
-        fontSize: 32,
-        fontFamily: fonts.medium,
-        color: colors.black,
+    topHeader: {
+        flex: 2,
+        alignItems: "center",
+        justifyContent: 'center',
+        marginTop: 30
+    },
+    hiderHeader: {
+        flex: 0.7,
+        alignItems: "center",
+        justifyContent: 'center',
+    },
+    middleView: {
+        flex: 5,
+        width: "100%",
+        alignItems: "center",
+        justifyContent: 'flex-start',
     },
 })

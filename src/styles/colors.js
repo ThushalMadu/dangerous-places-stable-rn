@@ -13,6 +13,11 @@ const blueVersion = {
   laBlue: "#E6F7FF",
   laOrange: "#FEE2CB",
   laRed: "#FEE8EE",
+  lowRisk: "#FFF1C4",
+  notDangerRisk: "#DAFF9F",
+  clamWeather: "#DDF8FF",
+  clamWeatherBold: "#003BFF",
+  notDangerRiskBold: "#00FF00",
 };
 
 export default blueVersion;
