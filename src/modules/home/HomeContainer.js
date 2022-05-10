@@ -5,7 +5,9 @@ import * as Function from './HomeFunction';
 import {
     setHomeStatusAction,
     setLatitudeAction,
-    setLongitudeAction
+    setLongitudeAction,
+    setWeatherStatusAction,
+    setWeatherDetailsAction
 } from './HomeState';
 
 import { setSpinnerStatusAction } from '../../commonStore/CommonStore'
@@ -24,6 +26,8 @@ export default compose(
             setHomeStatusAction: homeStatus => dispatch(setHomeStatusAction(homeStatus)),
             setLatitudeAction: latitude => dispatch(setLatitudeAction(latitude)),
             setLongitudeAction: longitude => dispatch(setLongitudeAction(longitude)),
+            setWeatherStatusAction: weatherStatus => dispatch(setWeatherStatusAction(weatherStatus)),
+            setWeatherDetailsAction: weatherDetails => dispatch(setWeatherDetailsAction(weatherDetails)),
 
             //common
             setSpinnerStatusAction: status => dispatch(setSpinnerStatusAction(status)),
@@ -32,6 +36,7 @@ export default compose(
     lifecycle({
         componentDidMount() {
             Function.getCuurentLocation(this.props);
+            // Function.getWeatherDetailsPlace(this.props);
         },
     }),
 )(HomeView);

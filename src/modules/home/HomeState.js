@@ -2,13 +2,17 @@
 const initialState = {
   homeStatus: false,
   latitude: 0,
-  longitude: 0
+  longitude: 0,
+  weatherDetails: [],
+  weatherStatus: false
 };
 
 // Actions
 const SET_HOMESTATUS = "SET_HOMESTATUS"
 const SET_LATITUDE = "SET_LATITUDE"
 const SET_LONGITUDE = "SET_LONGITUDE"
+const SET_WEATHERSTATUS = "SET_WEATHERSTATUS"
+const SET_WEATHERDETAILS = "SET_WEATHERDETAILS"
 
 
 export function setHomeStatusAction(homeStatus) {
@@ -29,6 +33,18 @@ export function setLongitudeAction(longitude) {
     longitude
   };
 }
+export function setWeatherStatusAction(weatherStatus) {
+  return {
+    type: SET_WEATHERSTATUS,
+    weatherStatus
+  };
+}
+export function setWeatherDetailsAction(weatherDetails) {
+  return {
+    type: SET_WEATHERDETAILS,
+    weatherDetails
+  };
+}
 
 // set homeStatus
 const setHomeStatus = (state, action) => ({
@@ -45,6 +61,14 @@ const setLongitude = (state, action) => ({
   ...state,
   longitude: action.longitude,
 });
+const setWeatherStatus = (state, action) => ({
+  ...state,
+  weatherStatus: action.weatherStatus,
+});
+const setWeatherDetails = (state, action) => ({
+  ...state,
+  weatherDetails: action.weatherDetails,
+});
 
 
 // Reducer
@@ -56,6 +80,10 @@ export default function homeReducer(state = initialState, action) {
       return setLatitude(state, action)
     case SET_LONGITUDE:
       return setLongitude(state, action)
+    case SET_WEATHERSTATUS:
+      return setWeatherStatus(state, action)
+    case SET_WEATHERDETAILS:
+      return setWeatherDetails(state, action)
     default:
       return state;
   }
