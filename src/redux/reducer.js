@@ -8,6 +8,7 @@ import login from '../modules/login/LoginState';
 import setting from '../modules/settings/SettingState';
 import camera from '../modules/camera/CameraState';
 import detailPlace from '../modules/detailPlace/DetailPlaceState';
+import notification from '../modules/notification/NotificationState';
 
 
 export default combineReducers({
@@ -18,5 +19,6 @@ export default combineReducers({
   setting,
   camera,
   commonStore,
-  detailPlace
+  detailPlace,
+  notification
 });

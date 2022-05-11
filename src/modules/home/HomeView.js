@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Dimensions, FlatList } from "react-native";
 import * as Assets from "../../../assets/utils/Assets";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
-import { HomeHeader, PlaceComponent } from "../../components";
+import { HomeHeader, PlaceComponent, HomeLoader } from "../../components";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Function from './HomeFunction';
 
@@ -58,44 +58,50 @@ export default function HomeView(props) {
       <View style={styles.topContent}>
         <HomeHeader />
       </View>
-      <View style={styles.middleContent}>
-        <View style={styles.middleTopcontainer}>
-          <View style={styles.middleMapTopcontainer}>
-            <Text style={styles.topText}>You're in here</Text>
-          </View>
-          <View style={styles.middleMapMiddlecontainer}>
-            <MapView
-              provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-              style={styles.map}
-              showsUserLocation={true}
-              region={{
-                latitude: 7.9289653,
-                longitude: 81.0327647,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-              }}
-              followsUserLocation={true}
-              showsMyLocationButton={true}
-            ></MapView>
-          </View>
-          <View style={styles.middleMapButtomcontainer}>
-            <Text style={styles.wetherConditionText}>In your are weather condition is</Text>
-            <Text style={styles.cloudyText}>Cloud area 37*</Text>
-          </View>
+      {props.weatherStatus ? (
+        <View style={styles.middleContent}>
+          <HomeLoader />
         </View>
-        <View style={styles.middleTopTextButtomcontainer}>
-          <Text style={styles.buttomText}>Near Places Around You</Text>
-        </View>
-        <View style={styles.middleButtomcontainer}>
+      ) : (
+        <View style={styles.middleContent}>
+          <View style={styles.middleTopcontainer}>
+            <View style={styles.middleMapTopcontainer}>
+              <Text style={styles.topText}>You're in here</Text>
+            </View>
+            <View style={styles.middleMapMiddlecontainer}>
+              <MapView
+                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                style={styles.map}
+                showsUserLocation={true}
+                region={{
+                  latitude: 7.9289653,
+                  longitude: 81.0327647,
+                  latitudeDelta: 0.015,
+                  longitudeDelta: 0.0121,
+                }}
+                followsUserLocation={true}
+                showsMyLocationButton={true}
+              ></MapView>
+            </View>
+            <View style={styles.middleMapButtomcontainer}>
+              <Text style={styles.wetherConditionText}>In your are weather condition is</Text>
+              <Text style={styles.cloudyText}>{props.weatherDetails.weather[0].main} {Math.round(props.weatherDetails.main.temp - 273.15)}°</Text>
+            </View>
+          </View>
+          <View style={styles.middleTopTextButtomcontainer}>
+            <Text style={styles.buttomText}>Near Places Around You</Text>
+          </View>
+          <View style={styles.middleButtomcontainer}>
 
-          <FlatList
-            data={placesList}
-            renderItem={renderPlaceComponent}
-            keyExtractor={(item, index) => index.toString()}
-            showsVerticalScrollIndicator={false}
-          />
+            <FlatList
+              data={placesList}
+              renderItem={renderPlaceComponent}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
         </View>
-      </View>
+      )}
     </View>
   );
 }

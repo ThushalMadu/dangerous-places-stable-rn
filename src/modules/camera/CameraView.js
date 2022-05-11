@@ -14,14 +14,18 @@ import {
     Text,
     Platform,
     View,
+    LogBox
 } from 'react-native';
 import * as tf from "@tensorflow/tfjs";
 import { cameraWithTensors } from '@tensorflow/tfjs-react-native';
 import { Camera } from 'expo-camera';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
-import Canvas from 'react-native-canvas';
+import { DangerLoader } from "../../components";
 
+import Canvas from 'react-native-canvas';
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
 const initialiseTensorflow = async () => {
     await tf.ready();
     tf.getBackend();
@@ -52,7 +56,7 @@ const CameraView = () => {
             if (net) {
                 if (frame % computeRecognitionEveryNFrames === 0) {
                     const nextImageTensor = images.next().value;
-                    if (nextImageTensor || model) {
+                    if (nextImageTensor || model || model.detect != undefined) {
                         // const objects = await net.classify(nextImageTensor);
                         // console.log(objects.map(object => object.className));
                         // tf.dispose([nextImageTensor]);
@@ -61,6 +65,8 @@ const CameraView = () => {
 
                             drawRectange(prediction, nextImageTensor)
                         })
+                    } else {
+                        alert("Please Try agian to scan again")
                     }
                 }
                 frame += 1;
@@ -118,6 +124,7 @@ const CameraView = () => {
     }
 
     useEffect(() => {
+        LogBox.ignoreAllLogs();
         (async () => {
             const { status } = await Camera.requestPermissionsAsync();
             setHasPermission(status === 'granted');
@@ -141,8 +148,8 @@ const CameraView = () => {
     return (
         <SafeAreaView style={styles.topContent}>
             <View style={styles.textContent}>
-                <Text style={styles.sectionTitle}>Thushal </Text>
-
+                {/* <Text style={styles.sectionTitle}>Camera View</Text> */}
+                <DangerLoader />
             </View>
             <View style={styles.cameraContent}>
                 <TensorCamera
@@ -190,8 +197,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
     },
     sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
+        fontSize: 20,
+        color: colors.black,
+        textAlign: 'center',
+        fontFamily: fonts.medium,
     },
     sectionDescription: {
         marginTop: 8,

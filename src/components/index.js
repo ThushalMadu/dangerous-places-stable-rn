@@ -8,6 +8,8 @@ import BackHeader from './BackHeader';
 import WeatherCube from './WeatherCube';
 import DangerousCube from './DangerousCube';
 import RiskCube from './RiskCube';
+import HomeLoader from './HomeLoader';
+import DangerLoader from './DangerLoader';
 export {
     TextInput,
     Button,
@@ -18,5 +20,7 @@ export {
     BackHeader,
     WeatherCube,
     DangerousCube,
-    RiskCube
+    RiskCube,
+    HomeLoader,
+    DangerLoader
 }

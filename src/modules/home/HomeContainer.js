@@ -18,6 +18,8 @@ export default compose(
             homeStatus: state.home.homeStatus,
             latitude: state.home.latitude,
             longitude: state.home.longitude,
+            weatherDetails: state.home.weatherDetails,
+            weatherStatus: state.home.weatherStatus,
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
         }),

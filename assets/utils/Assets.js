@@ -18,3 +18,5 @@ export const personSettings = require('../images/personSettings.jpg');
 export const back = require('../images/back.png');
 export const detailScreen = require('../images/detailScreen.jpg');
 export const danger = require('../images/danger.png');
+export const loaderHome = require('../images/loaderHome.json');
+export const dangerLoader = require('../images/dangerLoader.json');

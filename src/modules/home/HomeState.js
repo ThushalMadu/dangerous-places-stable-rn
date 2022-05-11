@@ -3,8 +3,8 @@ const initialState = {
   homeStatus: false,
   latitude: 0,
   longitude: 0,
-  weatherDetails: [],
-  weatherStatus: false
+  weatherDetails: {},
+  weatherStatus: true
 };
 
 // Actions

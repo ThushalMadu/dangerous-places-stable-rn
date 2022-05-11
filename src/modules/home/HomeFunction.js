@@ -1,6 +1,8 @@
 import Geolocation from '@react-native-community/geolocation';
 
 export function getCuurentLocation(props) {
+    props.setWeatherStatusAction(true)
+
     Geolocation.getCurrentPosition(
         position => {
             console.log("🚀 ~ file: HomeFunction.js ~ line 6 ~ getCuurentLocation ~ position", position)
@@ -12,7 +14,7 @@ export function getCuurentLocation(props) {
         error => {
             console.log(error.code, error.message);
         },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
+        { enableHighAccuracy: false, timeout: 5000, maximumAge: 10000 },
     );
 }
 export function onSinglePlace(props) {
@@ -20,7 +22,6 @@ export function onSinglePlace(props) {
 
 }
 export function getWeatherDetailsPlace(props) {
-    props.setWeatherStatusAction(true)
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.latitude}&lon=${props.longitude}&appid=8ee9a1cfa5cf841442ee61d62695890b`, {
         method: 'GET',
         headers: {
@@ -30,9 +31,9 @@ export function getWeatherDetailsPlace(props) {
     })
         .then((response) => response.json())
         .then((responseJson) => {
-            props.setWeatherStatusAction(false)
             console.log("🚀 ~ file: HomeFunction.js ~ line 31 ~ .then ~ responseJson", responseJson);
             props.setWeatherDetailsAction(responseJson);
+            props.setWeatherStatusAction(false)
         })
         .catch((error) => {
             alert(JSON.stringify(error));

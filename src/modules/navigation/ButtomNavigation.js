@@ -10,6 +10,7 @@ import HomeScreen from '../home/HomeContainer';
 import SettingScreen from '../settings/SettingContainer';
 import CameraScreen from '../camera/CameraContainer';
 import DetailPlaceScreen from '../detailPlace/DetailPlaceContainer'
+import NotificationScreen from '../notification/NotificationContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Assets from '../../../assets/utils/Assets';
@@ -33,6 +34,11 @@ function HomeStackScreen({ navigation }) {
             <ItemStack.Screen
                 name="DetailPlaceScreen"
                 component={DetailPlaceScreen}
+                options={{ headerShown: false }}
+            />
+            <ItemStack.Screen
+                name="NotificationScreen"
+                component={NotificationScreen}
                 options={{ headerShown: false }}
             />
         </ItemStack.Navigator>
