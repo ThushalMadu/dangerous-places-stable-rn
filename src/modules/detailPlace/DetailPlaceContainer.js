@@ -16,6 +16,8 @@ export default compose(
 
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
+            singlePlace: state.home.singlePlace,
+
         }),
         dispatch => ({
             //detailPlace

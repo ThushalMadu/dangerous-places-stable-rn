@@ -15,11 +15,11 @@ export default function DetailPlaceView(props) {
             <View style={styles.buttomContentView}>
                 <ScrollView style={styles.scrollStyle}>
                     <View style={styles.buttomTopLayer}>
-                        <Image style={styles.imgStyle} source={Assets.detailScreen} />
+                        <Image style={styles.imgStyle} source={{ uri: props.singlePlace.images[0].img_url }} />
                     </View>
                     <View style={styles.buttomMiddleLayer}>
                         <View style={[styles.buttomMiddleTitleLayer, { marginTop: 20 }]}>
-                            <Text style={styles.titleText}>Perettasi Land Area</Text>
+                            <Text style={styles.titleText}>{props.singlePlace.placeName}</Text>
                         </View>
                         <View style={styles.buttomMiddleTabView}>
                             <WeatherCube />
@@ -32,7 +32,7 @@ export default function DetailPlaceView(props) {
                             <Text style={styles.titleDesText}>Description</Text>
                         </View>
                         <View style={styles.buttomYataTitleDes}>
-                            <Text style={styles.fullDesText}>This place is so dangeorus so don't think about to go the place and visit and bath please stay aware the place waterfalls, slopes of mountains</Text>
+                            <Text style={styles.fullDesText}>{props.singlePlace.location_description}</Text>
                         </View>
                     </View>
                 </ScrollView>

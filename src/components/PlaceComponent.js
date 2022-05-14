@@ -17,7 +17,7 @@ const PlaceComponent = (props) => (
             <Image
                 // resizeMode={'contain'}
                 style={styles.imgStyle}
-                source={{ uri: props.item.imageUrl }}
+                source={{ uri: props.item.images[0].img_url }}
             />
         </View>
         <View style={styles.rightContainer}>
@@ -25,10 +25,22 @@ const PlaceComponent = (props) => (
                 <Text style={styles.rightTopText}>{props.item.placeName}</Text>
             </View>
             <View style={styles.rightMiddleContainer}>
-                <Text style={styles.rightMiddleText}>{props.item.placeType}</Text>
+                <Text style={styles.rightMiddleText}>{props.item.state}</Text>
             </View>
             <View style={styles.rightButtomContainer}>
-                <Text style={styles.rightButtomText}>{props.item.riskLevel}</Text>
+                {0 < props.item.no_injured < 50 ? (
+                    <Text style={styles.rightButtomTextLow}>Low</Text>
+
+                ) : 51 < props.item.no_injured < 100 ? (
+                    <Text style={styles.rightButtomTextMedium}>Medium</Text>
+
+                ) : 101 < props.item.no_injured < 150 ? (
+                    <Text style={styles.rightButtomTextHigh}>High</Text>
+
+                ) : (
+                    <Text style={styles.rightButtomTextMedium}>_</Text>
+                )
+                }
             </View>
         </View>
     </TouchableOpacity>
@@ -95,9 +107,23 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         fontFamily: fonts.regular,
     },
-    rightButtomText: {
+    rightButtomTextLow: {
         fontSize: 14,
         color: colors.black,
+        textAlign: 'left',
+        fontFamily: fonts.medium,
+
+    },
+    rightButtomTextMedium: {
+        fontSize: 14,
+        color: colors.shoppingbuttonColor,
+        textAlign: 'left',
+        fontFamily: fonts.medium,
+
+    },
+    rightButtomTextHigh: {
+        fontSize: 14,
+        color: colors.animered,
         textAlign: 'left',
         fontFamily: fonts.medium,
 

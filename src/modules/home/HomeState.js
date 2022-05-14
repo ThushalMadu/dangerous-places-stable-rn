@@ -4,7 +4,9 @@ const initialState = {
   latitude: 0,
   longitude: 0,
   weatherDetails: {},
-  weatherStatus: true
+  weatherStatus: true,
+  allPlaces: [],
+  singlePlace: {}
 };
 
 // Actions
@@ -13,6 +15,8 @@ const SET_LATITUDE = "SET_LATITUDE"
 const SET_LONGITUDE = "SET_LONGITUDE"
 const SET_WEATHERSTATUS = "SET_WEATHERSTATUS"
 const SET_WEATHERDETAILS = "SET_WEATHERDETAILS"
+const SET_ALLPLACES = "SET_ALLPLACES"
+const SET_SINGLEPLACE = "SET_SINGLEPLACE"
 
 
 export function setHomeStatusAction(homeStatus) {
@@ -45,6 +49,18 @@ export function setWeatherDetailsAction(weatherDetails) {
     weatherDetails
   };
 }
+export function setAllPlacesAction(allPlaces) {
+  return {
+    type: SET_ALLPLACES,
+    allPlaces
+  };
+}
+export function setSinglePlaceAction(singlePlace) {
+  return {
+    type: SET_SINGLEPLACE,
+    singlePlace
+  };
+}
 
 // set homeStatus
 const setHomeStatus = (state, action) => ({
@@ -69,6 +85,14 @@ const setWeatherDetails = (state, action) => ({
   ...state,
   weatherDetails: action.weatherDetails,
 });
+const setAllPlaces = (state, action) => ({
+  ...state,
+  allPlaces: action.allPlaces,
+});
+const setSinglePlace = (state, action) => ({
+  ...state,
+  singlePlace: action.singlePlace,
+});
 
 
 // Reducer
@@ -84,6 +108,10 @@ export default function homeReducer(state = initialState, action) {
       return setWeatherStatus(state, action)
     case SET_WEATHERDETAILS:
       return setWeatherDetails(state, action)
+    case SET_ALLPLACES:
+      return setAllPlaces(state, action)
+    case SET_SINGLEPLACE:
+      return setSinglePlace(state, action)
     default:
       return state;
   }

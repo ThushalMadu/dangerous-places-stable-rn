@@ -14,10 +14,11 @@ export function getCuurentLocation(props) {
         error => {
             console.log(error.code, error.message);
         },
-        { enableHighAccuracy: false, timeout: 5000, maximumAge: 10000 },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 10000 },
     );
 }
-export function onSinglePlace(props) {
+export function onSinglePlace(props, item) {
+    props.setSinglePlaceAction(item)
     props.navigation.navigate('DetailPlaceScreen');
 
 }
@@ -33,10 +34,29 @@ export function getWeatherDetailsPlace(props) {
         .then((responseJson) => {
             console.log("🚀 ~ file: HomeFunction.js ~ line 31 ~ .then ~ responseJson", responseJson);
             props.setWeatherDetailsAction(responseJson);
-            props.setWeatherStatusAction(false)
+            getAllPlace(props)
         })
         .catch((error) => {
             alert(JSON.stringify(error));
+            console.log('Output  ~ file FULL ERROR: ', error);
+        });
+}
+export function getAllPlace(props) {
+    fetch(`http://192.168.1.4:3000/danger/place`, {
+        method: 'GET',
+        headers: {
+            method: 'GET',
+            headers: {},
+        },
+    })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log("🚀 ~ file: HomeFunction.js ~ line 31 ~ .then ~ responseJson", responseJson);
+            props.setAllPlacesAction(responseJson);
+            props.setWeatherStatusAction(false)
+        })
+        .catch((error) => {
+            // alert(JSON.stringify(error));
             console.log('Output  ~ file FULL ERROR: ', error);
         });
 }

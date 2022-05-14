@@ -7,7 +7,9 @@ import {
     setLatitudeAction,
     setLongitudeAction,
     setWeatherStatusAction,
-    setWeatherDetailsAction
+    setWeatherDetailsAction,
+    setAllPlacesAction,
+    setSinglePlaceAction
 } from './HomeState';
 
 import { setSpinnerStatusAction } from '../../commonStore/CommonStore'
@@ -20,6 +22,8 @@ export default compose(
             longitude: state.home.longitude,
             weatherDetails: state.home.weatherDetails,
             weatherStatus: state.home.weatherStatus,
+            allPlaces: state.home.allPlaces,
+            singlePlace: state.home.singlePlace,
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
         }),
@@ -30,6 +34,8 @@ export default compose(
             setLongitudeAction: longitude => dispatch(setLongitudeAction(longitude)),
             setWeatherStatusAction: weatherStatus => dispatch(setWeatherStatusAction(weatherStatus)),
             setWeatherDetailsAction: weatherDetails => dispatch(setWeatherDetailsAction(weatherDetails)),
+            setAllPlacesAction: allPlaces => dispatch(setAllPlacesAction(allPlaces)),
+            setSinglePlaceAction: singlePlace => dispatch(setSinglePlaceAction(singlePlace)),
 
             //common
             setSpinnerStatusAction: status => dispatch(setSpinnerStatusAction(status)),

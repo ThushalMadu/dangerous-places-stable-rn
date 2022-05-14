@@ -94,7 +94,7 @@ export default function HomeView(props) {
           <View style={styles.middleButtomcontainer}>
 
             <FlatList
-              data={placesList}
+              data={props.allPlaces}
               renderItem={renderPlaceComponent}
               keyExtractor={(item, index) => index.toString()}
               showsVerticalScrollIndicator={false}
