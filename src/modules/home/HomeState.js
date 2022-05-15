@@ -6,7 +6,9 @@ const initialState = {
   weatherDetails: {},
   weatherStatus: true,
   allPlaces: [],
-  singlePlace: {}
+  singlePlace: {},
+  riskLevel: "",
+  dangerStatus: "",
 };
 
 // Actions
@@ -17,6 +19,8 @@ const SET_WEATHERSTATUS = "SET_WEATHERSTATUS"
 const SET_WEATHERDETAILS = "SET_WEATHERDETAILS"
 const SET_ALLPLACES = "SET_ALLPLACES"
 const SET_SINGLEPLACE = "SET_SINGLEPLACE"
+const SET_RISKLEVEL = "SET_RISKLEVEL"
+const SET_DANGERSTATUS = "SET_DANGERSTATUS"
 
 
 export function setHomeStatusAction(homeStatus) {
@@ -61,6 +65,18 @@ export function setSinglePlaceAction(singlePlace) {
     singlePlace
   };
 }
+export function setRiskLevelAction(riskLevel) {
+  return {
+    type: SET_RISKLEVEL,
+    riskLevel
+  };
+}
+export function setDangerStatusAction(dangerStatus) {
+  return {
+    type: SET_DANGERSTATUS,
+    dangerStatus
+  };
+}
 
 // set homeStatus
 const setHomeStatus = (state, action) => ({
@@ -93,6 +109,14 @@ const setSinglePlace = (state, action) => ({
   ...state,
   singlePlace: action.singlePlace,
 });
+const setRiskLevel = (state, action) => ({
+  ...state,
+  riskLevel: action.riskLevel,
+});
+const setDangerStatus = (state, action) => ({
+  ...state,
+  dangerStatus: action.dangerStatus,
+});
 
 
 // Reducer
@@ -112,6 +136,10 @@ export default function homeReducer(state = initialState, action) {
       return setAllPlaces(state, action)
     case SET_SINGLEPLACE:
       return setSinglePlace(state, action)
+    case SET_RISKLEVEL:
+      return setRiskLevel(state, action)
+    case SET_DANGERSTATUS:
+      return setDangerStatus(state, action)
     default:
       return state;
   }

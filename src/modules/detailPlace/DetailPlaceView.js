@@ -24,7 +24,7 @@ export default function DetailPlaceView(props) {
                         <View style={styles.buttomMiddleTabView}>
                             <WeatherCube />
                             <RiskCube />
-                            <DangerousCube />
+                            <DangerousCube danger={props.singlePlace.no_killed > 0 ? true : false} />
                         </View>
                     </View>
                     <View style={styles.buttomYataLayer}>

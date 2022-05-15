@@ -9,7 +9,9 @@ import {
     setWeatherStatusAction,
     setWeatherDetailsAction,
     setAllPlacesAction,
-    setSinglePlaceAction
+    setSinglePlaceAction,
+    setRiskLevelAction,
+    setDangerStatusAction
 } from './HomeState';
 
 import { setSpinnerStatusAction } from '../../commonStore/CommonStore'
@@ -24,6 +26,8 @@ export default compose(
             weatherStatus: state.home.weatherStatus,
             allPlaces: state.home.allPlaces,
             singlePlace: state.home.singlePlace,
+            riskLevel: state.home.riskLevel,
+            dangerStatus: state.home.dangerStatus,
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
         }),
@@ -36,6 +40,8 @@ export default compose(
             setWeatherDetailsAction: weatherDetails => dispatch(setWeatherDetailsAction(weatherDetails)),
             setAllPlacesAction: allPlaces => dispatch(setAllPlacesAction(allPlaces)),
             setSinglePlaceAction: singlePlace => dispatch(setSinglePlaceAction(singlePlace)),
+            setRiskLevelAction: riskLevel => dispatch(setRiskLevelAction(riskLevel)),
+            setDangerStatusAction: dangerStatus => dispatch(setDangerStatusAction(dangerStatus)),
 
             //common
             setSpinnerStatusAction: status => dispatch(setSpinnerStatusAction(status)),

@@ -17,7 +17,8 @@ export default compose(
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
             singlePlace: state.home.singlePlace,
-
+            riskLevel: state.home.riskLevel,
+            dangerStatus: state.home.dangerStatus,
         }),
         dispatch => ({
             //detailPlace
@@ -29,7 +30,8 @@ export default compose(
     ),
     lifecycle({
         componentDidMount() {
-
+            console.log("🚀 ~ file: DetailPlaceContainer.js ~ line 21 ~ riskLevel", this.props.riskLevel)
+            console.log("🚀 ~ file: DetailPlaceContainer.js ~ line 22 ~ dangerStatus", this.props.dangerStatus)
         },
     }),
 )(DetailPlaceView);

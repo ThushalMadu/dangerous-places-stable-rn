@@ -28,13 +28,13 @@ const PlaceComponent = (props) => (
                 <Text style={styles.rightMiddleText}>{props.item.state}</Text>
             </View>
             <View style={styles.rightButtomContainer}>
-                {0 < props.item.no_injured < 50 ? (
+                {0 < props.item.no_injured && props.item.no_injured < 50 ? (
                     <Text style={styles.rightButtomTextLow}>Low</Text>
 
-                ) : 51 < props.item.no_injured < 100 ? (
+                ) : 51 < props.item.no_injured && props.item.no_injured < 100 ? (
                     <Text style={styles.rightButtomTextMedium}>Medium</Text>
 
-                ) : 101 < props.item.no_injured < 150 ? (
+                ) : 101 < props.item.no_injured && props.item.no_injured ? (
                     <Text style={styles.rightButtomTextHigh}>High</Text>
 
                 ) : (

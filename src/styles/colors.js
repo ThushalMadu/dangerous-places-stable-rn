@@ -18,6 +18,7 @@ const blueVersion = {
   clamWeather: "#DDF8FF",
   clamWeatherBold: "#003BFF",
   notDangerRiskBold: "#00FF00",
+  DangerRiskBold: "#FDC1CE",
 };
 
 export default blueVersion;
