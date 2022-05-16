@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    TouchableOpacity
 } from "react-native";
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -22,9 +23,9 @@ const HomeHeader = (props) => (
                 <Text style={styles.buttomText}>Thushal Madhu</Text>
             </View>
         </View>
-        <View style={styles.RightlContainer}>
+        <TouchableOpacity onPress={props.onClickNotification} style={styles.RightlContainer}>
             <Image style={styles.notImgStyle} source={Assets.notification} />
-        </View>
+        </TouchableOpacity>
     </View>
 )
 export default HomeHeader;

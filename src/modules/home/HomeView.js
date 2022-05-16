@@ -56,7 +56,7 @@ export default function HomeView(props) {
   return (
     <View style={styles.contentView}>
       <View style={styles.topContent}>
-        <HomeHeader />
+        <HomeHeader onClickNotification={() => Function.onNotification(props)} />
       </View>
       {props.weatherStatus ? (
         <View style={styles.middleContent}>

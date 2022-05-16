@@ -23,6 +23,9 @@ export function onSinglePlace(props, item) {
     props.navigation.navigate('DetailPlaceScreen');
 
 }
+export function onNotification(props) {
+    props.navigation.navigate('NotificationScreen');
+}
 export function getWeatherDetailsPlace(props) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.latitude}&lon=${props.longitude}&appid=8ee9a1cfa5cf841442ee61d62695890b`, {
         method: 'GET',

@@ -23,8 +23,8 @@ export default function DetailPlaceView(props) {
                         </View>
                         <View style={styles.buttomMiddleTabView}>
                             <WeatherCube />
-                            <RiskCube />
-                            <DangerousCube danger={props.singlePlace.no_killed > 0 ? true : false} />
+                            <RiskCube riskType={props.riskLevel} />
+                            <DangerousCube danger={props.singlePlace.no_killed > 0 || props.singlePlace.no_injured > 100 ? true : false} />
                         </View>
                     </View>
                     <View style={styles.buttomYataLayer}>
