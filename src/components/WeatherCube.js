@@ -13,7 +13,7 @@ import * as Assets from '../../assets/utils/Assets';
 const WeatherCube = (props) => (
     <View style={styles.container}>
         <View style={styles.topContainer}>
-            <Text style={styles.topText}>Clam</Text>
+            <Text style={styles.topText}>{props.weatherCondition}</Text>
         </View>
         <View style={styles.buttomContainer}>
             <Text style={styles.buttomText}>Weather</Text>

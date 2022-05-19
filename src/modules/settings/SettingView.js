@@ -8,6 +8,7 @@ import * as Assets from '../../../assets/utils/Assets'
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 import { SettingsCompo, SettingHeader } from "../../components";
+import * as Function from './SettingFunction';
 
 export default function SettingView(props) {
     return (
@@ -18,10 +19,10 @@ export default function SettingView(props) {
             <View style={styles.hiderHeader}>
             </View>
             <View style={styles.middleView}>
-                <SettingsCompo settingsName={"Edit Profile"} settingsType={"editProfile"} />
-                <SettingsCompo settingsName={"Notification"} settingsType={"notification"} />
-                <SettingsCompo settingsName={"Privacy & Policy"} settingsType={"privacy"} />
-                <SettingsCompo settingsName={"About us"} settingsType={"personRound"} />
+                <SettingsCompo onClickItem={() => Function.onClickEditProfile(props)} settingsName={"Edit Profile"} settingsType={"editProfile"} />
+                <SettingsCompo onClickItem={() => Function.onClickNotification(props)} settingsName={"Notification"} settingsType={"notification"} />
+                <SettingsCompo onClickItem={() => Function.onClickPrivacyPolicy(props)} settingsName={"Privacy & Policy"} settingsType={"privacy"} />
+                <SettingsCompo onClickItem={() => Function.onClickAbout(props)} settingsName={"About us"} settingsType={"personRound"} />
             </View>
         </View>
     );

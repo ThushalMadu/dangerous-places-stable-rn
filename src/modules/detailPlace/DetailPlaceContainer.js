@@ -19,6 +19,7 @@ export default compose(
             singlePlace: state.home.singlePlace,
             riskLevel: state.home.riskLevel,
             dangerStatus: state.home.dangerStatus,
+            weatherCondition: state.home.weatherCondition,
         }),
         dispatch => ({
             //detailPlace

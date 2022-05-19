@@ -7,15 +7,13 @@ import {
 import * as Assets from '../../../assets/utils/Assets'
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
-import { SettingsCompo, SettingHeader } from "../../components";
-
+import { SettingsCompo, BackHeader } from "../../components";
+import * as Function from './NotificationFunction'
 export default function NotificationView(props) {
     return (
         <View style={styles.contentView}>
             <View style={styles.topHeader}>
-                <Text>This is Notification Screen</Text>
-            </View>
-            <View style={styles.hiderHeader}>
+                <BackHeader onClick={() => Function.onBackClick(props)} header={"Notifications"} />
             </View>
             <View style={styles.middleView}>
 
@@ -33,10 +31,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white
     },
     topHeader: {
-        flex: 2,
+        flex: 1,
         alignItems: "center",
         justifyContent: 'center',
-        marginTop: 30
+        // marginTop: 30
     },
     hiderHeader: {
         flex: 0.7,
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     middleView: {
-        flex: 5,
+        flex: 8,
         width: "100%",
         alignItems: "center",
         justifyContent: 'flex-start',

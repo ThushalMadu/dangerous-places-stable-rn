@@ -52,7 +52,11 @@ function SettingStackScreen({ navigation }) {
                 component={SettingScreen}
                 options={{ headerShown: false }}
             />
-
+            <ItemStack.Screen
+                name="NotificationScreen"
+                component={NotificationScreen}
+                options={{ headerShown: false }}
+            />
         </ItemStack.Navigator>
     );
 }

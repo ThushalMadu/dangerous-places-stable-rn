@@ -38,6 +38,7 @@ export function getWeatherDetailsPlace(props) {
         .then((responseJson) => {
             // console.log("🚀 ~ file: HomeFunction.js ~ line 31 ~ .then ~ responseJson", responseJson);
             props.setWeatherDetailsAction(responseJson);
+            props.setWeatherConditionAction(responseJson.weather[0].main)
             getAllPlace(props)
         })
         .catch((error) => {

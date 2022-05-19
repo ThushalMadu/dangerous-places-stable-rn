@@ -22,7 +22,7 @@ export default function DetailPlaceView(props) {
                             <Text style={styles.titleText}>{props.singlePlace.placeName}</Text>
                         </View>
                         <View style={styles.buttomMiddleTabView}>
-                            <WeatherCube />
+                            <WeatherCube weatherCondition={props.weatherCondition} />
                             <RiskCube riskType={props.riskLevel} />
                             <DangerousCube danger={props.singlePlace.no_killed > 0 || props.singlePlace.no_injured > 100 ? true : false} />
                         </View>

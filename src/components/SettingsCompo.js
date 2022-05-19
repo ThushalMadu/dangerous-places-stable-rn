@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     Image,
-    Dimensions
+    Dimensions,
+    TouchableOpacity
 } from "react-native";
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -12,7 +13,7 @@ import * as Assets from '../../assets/utils/Assets';
 
 
 const SettingsCompo = (props) => (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={props.onClickItem} style={styles.container}>
         <View style={styles.leftContainer}>
             {props.settingsType == "editProfile" ? (
                 <View style={[styles.iconContainer, { backgroundColor: colors.laPurple }]}>
@@ -40,7 +41,7 @@ const SettingsCompo = (props) => (
                 <Image style={styles.imgNextStyle} source={Assets.next} />
             </View>
         </View>
-    </View>
+    </TouchableOpacity>
 );
 export default SettingsCompo;
 

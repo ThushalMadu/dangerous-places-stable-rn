@@ -69,11 +69,11 @@ const styles = StyleSheet.create({
     boarderBar: {
         alignItems: "flex-start",
         justifyContent: "center",
-        width: "100%",
+        width: "85%",
         height: 50,
         borderColor: colors.placeblack,
         borderWidth: 1,
-        borderRadius: 30,
+        borderRadius: 13,
     },
     boarderKotuBar: {
         alignItems: "center",
