@@ -60,3 +60,6 @@ buck-out/
 # model
 src/assets/model/local-model.json
 src/assets/model/local-weights.bin
+android/java_pid1446.hprof
+android/java_pid5997.hprof
+android/java_pid6753.hprof

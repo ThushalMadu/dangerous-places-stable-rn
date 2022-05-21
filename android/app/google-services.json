@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "51857493307",
+    "project_id": "dangerousplaces",
+    "storage_bucket": "dangerousplaces.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51857493307:android:6a6670e7d55df88f0dbb1e",
+        "android_client_info": {
+          "package_name": "com.thushal.dangerous"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51857493307-srd1rdidmrmfu1ilkpcs2q3bc2aldboi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBabqJqEMwlXQEXuLw7Md48msRtqEwfQ-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51857493307-srd1rdidmrmfu1ilkpcs2q3bc2aldboi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

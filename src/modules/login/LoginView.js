@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     imgStyle: {
-        width: 250,
-        height: 250,
+        width: 300,
+        height: 300,
     },
     scrollStyle: {
         width: "100%",

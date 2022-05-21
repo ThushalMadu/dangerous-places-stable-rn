@@ -13,7 +13,7 @@ export default compose(
         state => ({
             //home
             startUpStatus: state.startUp.startUpStatus,
-            
+
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
         }),
@@ -27,7 +27,9 @@ export default compose(
     ),
     lifecycle({
         componentDidMount() {
-
+            setTimeout(() => {
+                Function.redirectAnotherpage(this.props);
+            }, 3000);
         },
     }),
 )(StartupView);
