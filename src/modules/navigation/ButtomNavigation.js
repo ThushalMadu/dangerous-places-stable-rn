@@ -11,14 +11,15 @@ import SettingScreen from '../settings/SettingContainer';
 import CameraScreen from '../camera/CameraContainer';
 import DetailPlaceScreen from '../detailPlace/DetailPlaceContainer'
 import NotificationScreen from '../notification/NotificationContainer'
+import MapScreen from '../map/MapContainer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Assets from '../../../assets/utils/Assets';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 
-let clickIcon = Dimensions.get('screen').height / 27
-let notIcon = Dimensions.get('screen').height / 31
+let clickIcon = Dimensions.get('screen').height / 30
+let notIcon = Dimensions.get('screen').height / 34
 
 const Tab = createBottomTabNavigator();
 const ItemStack = createStackNavigator();
@@ -34,6 +35,11 @@ function HomeStackScreen({ navigation }) {
             <ItemStack.Screen
                 name="DetailPlaceScreen"
                 component={DetailPlaceScreen}
+                options={{ headerShown: false }}
+            />
+            <ItemStack.Screen
+                name="MapScreen"
+                component={MapScreen}
                 options={{ headerShown: false }}
             />
             <ItemStack.Screen

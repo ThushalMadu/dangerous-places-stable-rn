@@ -9,6 +9,7 @@ import setting from '../modules/settings/SettingState';
 import camera from '../modules/camera/CameraState';
 import detailPlace from '../modules/detailPlace/DetailPlaceState';
 import notification from '../modules/notification/NotificationState';
+import map from '../modules/map/MapState';
 
 
 export default combineReducers({
@@ -20,5 +21,6 @@ export default combineReducers({
   camera,
   commonStore,
   detailPlace,
-  notification
+  notification,
+  map
 });

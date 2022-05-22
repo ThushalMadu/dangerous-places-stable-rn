@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, Dimensions, FlatList } from "react-native";
+import { View, StyleSheet, Text, Dimensions, FlatList, TouchableOpacity } from "react-native";
 import * as Assets from "../../../assets/utils/Assets";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
@@ -11,43 +11,6 @@ export default function HomeView(props) {
   const { width, height } = Dimensions.get("window");
   const SCREEN_HEIGHT = height;
   const SCREEN_WIDTH = width;
-  const placesList = [
-    {
-      id: 1,
-      placeName: "Diyaluma WaterFalls",
-      placeType: "Waterfall",
-      riskLevel: "Low",
-      imageUrl: "https://images.unsplash.com/photo-1643741444323-5dbbe8902a98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGl5YWx1bWF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-    },
-    {
-      id: 2,
-      placeName: "Seventh Virgis Mountains",
-      placeType: "Mountains",
-      riskLevel: "High Risk Level",
-      imageUrl: "https://www.amayaresorts.com/blog/wp-content/uploads/sites/3/2019/01/Seven-Virgins-Mountains-Sri-Lanka-Saptha-Kanya-Maskeliya.jpg",
-    },
-    {
-      id: 3,
-      placeName: "Geradi Ella",
-      placeType: "Waterfall",
-      riskLevel: "Medium",
-      imageUrl: "https://images.unsplash.com/photo-1609681980718-340e7f4b11d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
-    },
-    {
-      id: 4,
-      placeName: "Dunhinda WaterFalls",
-      placeType: "Waterfall",
-      riskLevel: "Medium",
-      imageUrl: "https://images.unsplash.com/photo-1524726240783-939bfdd633e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-    },
-    {
-      id: 5,
-      placeName: "Kadiyanlena WaterFalls",
-      placeType: "Waterfall",
-      riskLevel: "Low",
-      imageUrl: "https://images.unsplash.com/photo-1552055669-d01771d214a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80",
-    },
-  ];
 
   function renderPlaceComponent({ item }) {
     return <PlaceComponent onClickItem={() => Function.onSinglePlace(props, item)} item={item} />;
@@ -89,7 +52,12 @@ export default function HomeView(props) {
             </View>
           </View>
           <View style={styles.middleTopTextButtomcontainer}>
-            <Text style={styles.buttomText}>Near Places Around You</Text>
+            <View style={styles.mapNearView}>
+              <Text style={styles.buttomText}>Near Places Around You</Text>
+            </View>
+            <TouchableOpacity onPress={() => Function.onClickMapAllView(props)} style={styles.mapAllView}>
+              <Text style={styles.buttomMapViewText}>All Place Map</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.middleButtomcontainer}>
 
@@ -161,10 +129,21 @@ const styles = StyleSheet.create({
   },
   middleTopTextButtomcontainer: {
     flex: 0.6,
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
     alignSelf: 'stretch',
-    marginLeft: 5
+    marginLeft: 5,
+    flexDirection: 'row',
+  },
+  mapNearView: {
+    flex: 2,
+    alignItems: "flex-start",
+    justifyContent: "center",
+  },
+  mapAllView: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
   },
   middleMapTopcontainer: {
     flex: 0.5,
@@ -208,5 +187,11 @@ const styles = StyleSheet.create({
     color: colors.black,
     textAlign: 'left',
     fontFamily: fonts.bold,
+  },
+  buttomMapViewText: {
+    fontSize: 14,
+    color: colors.alucolor,
+    textAlign: 'left',
+    fontFamily: fonts.regular,
   },
 });

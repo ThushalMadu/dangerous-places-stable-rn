@@ -81,3 +81,8 @@ export function checkStatucFunc(props, place) {
         props.setRiskLevelAction("Determination On progress")
     }
 }
+
+export function onClickMapAllView(props) {
+    props.navigation.navigate('MapScreen');
+
+}
