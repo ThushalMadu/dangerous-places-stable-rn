@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Dimensions, FlatList, TouchableOpacity } from "react-native";
 import * as Assets from "../../../assets/utils/Assets";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
 import { HomeHeader, PlaceComponent, HomeLoader } from "../../components";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import NetInfo from "@react-native-community/netinfo";
 import * as Function from './HomeFunction';
 
 export default function HomeView(props) {
   const { width, height } = Dimensions.get("window");
   const SCREEN_HEIGHT = height;
   const SCREEN_WIDTH = width;
+  const [isOnline, setOnlineStatus] = useState(false);
 
   function renderPlaceComponent({ item }) {
     return <PlaceComponent onClickItem={() => Function.onSinglePlace(props, item)} item={item} />;
   }
+
+  useEffect(() => {
+    const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
+      setOnlineStatus(state.isConnected)
+    });
+
+    return () => removeNetInfoSubscription();
+  }, [isOnline]);
 
   return (
     <View style={styles.contentView}>
@@ -32,19 +42,25 @@ export default function HomeView(props) {
               <Text style={styles.topText}>You're in here</Text>
             </View>
             <View style={styles.middleMapMiddlecontainer}>
-              <MapView
-                provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                style={styles.map}
-                showsUserLocation={true}
-                region={{
-                  latitude: 7.9289653,
-                  longitude: 81.0327647,
-                  latitudeDelta: 0.015,
-                  longitudeDelta: 0.0121,
-                }}
-                followsUserLocation={true}
-                showsMyLocationButton={true}
-              ></MapView>
+              {isOnline ? (
+                <MapView
+                  provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                  style={styles.map}
+                  showsUserLocation={true}
+                  region={{
+                    latitude: 7.9289653,
+                    longitude: 81.0327647,
+                    latitudeDelta: 0.015,
+                    longitudeDelta: 0.0121,
+                  }}
+                  followsUserLocation={true}
+                  showsMyLocationButton={true}
+                ></MapView>
+              ) : (
+                <View style={styles.middleOfflineView}>
+                  <Text style={styles.middleOfflineText}>You're in Offline Mode</Text>
+                </View>
+              )}
             </View>
             <View style={styles.middleMapButtomcontainer}>
               <Text style={styles.wetherConditionText}>In your are weather condition is</Text>
@@ -55,9 +71,14 @@ export default function HomeView(props) {
             <View style={styles.mapNearView}>
               <Text style={styles.buttomText}>Near Places Around You</Text>
             </View>
-            <TouchableOpacity onPress={() => Function.onClickMapAllView(props)} style={styles.mapAllView}>
-              <Text style={styles.buttomMapViewText}>All Place Map</Text>
-            </TouchableOpacity>
+            {isOnline ? (
+              <TouchableOpacity onPress={() => Function.onClickMapAllView(props)} style={styles.mapAllView}>
+                <Text style={styles.buttomMapViewText}>All Place Map</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.mapAllView}>
+              </View>
+            )}
           </View>
           <View style={styles.middleButtomcontainer}>
 
@@ -153,6 +174,12 @@ const styles = StyleSheet.create({
     marginLeft: 20
 
   },
+  middleOfflineView: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    // width: "80%"
+  },
   middleButtomcontainer: {
     flex: 3,
     alignItems: "center",
@@ -168,6 +195,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.black,
     textAlign: 'left',
+    fontFamily: fonts.medium,
+  },
+  middleOfflineText: {
+    fontSize: 16,
+    color: colors.green,
+    textAlign: 'center',
     fontFamily: fonts.medium,
   },
   wetherConditionText: {

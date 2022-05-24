@@ -5,6 +5,7 @@ const initialState = {
   longitude: 0,
   weatherDetails: {},
   weatherStatus: true,
+  notificationStatus: false, // This Extra Notification Status 
   allPlaces: [],
   singlePlace: {},
   riskLevel: "",
@@ -23,6 +24,7 @@ const SET_SINGLEPLACE = "SET_SINGLEPLACE"
 const SET_RISKLEVEL = "SET_RISKLEVEL"
 const SET_DANGERSTATUS = "SET_DANGERSTATUS"
 const SET_WEATHERCONDITION = "SET_WEATHERCONDITION"
+const SET_NOTIFICATIONSTATUS = "SET_NOTIFICATIONSTATUS"
 
 
 export function setHomeStatusAction(homeStatus) {
@@ -85,6 +87,12 @@ export function setWeatherConditionAction(weatherCondition) {
     weatherCondition
   };
 }
+export function setNotificationStatusAction(notificationStatus) {
+  return {
+    type: SET_NOTIFICATIONSTATUS,
+    notificationStatus
+  };
+}
 
 // set homeStatus
 const setHomeStatus = (state, action) => ({
@@ -129,6 +137,10 @@ const setWeatherCondition = (state, action) => ({
   ...state,
   weatherCondition: action.weatherCondition,
 });
+const setNotificationStatus = (state, action) => ({
+  ...state,
+  notificationStatus: action.notificationStatus,
+});
 
 
 // Reducer
@@ -154,6 +166,8 @@ export default function homeReducer(state = initialState, action) {
       return setDangerStatus(state, action)
     case SET_WEATHERCONDITION:
       return setWeatherCondition(state, action)
+    case SET_NOTIFICATIONSTATUS:
+      return setNotificationStatus(state, action)
     default:
       return state;
   }

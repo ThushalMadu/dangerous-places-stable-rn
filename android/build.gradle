@@ -9,6 +9,7 @@ buildscript {
             googlePlayServicesVersion = "+" // default: "+"
     firebaseMessagingVersion = "21.1.0" // default: "21.1.0"
     supportLibVersion = "23.1.1" // default: 23.1.1
+    androidXCore = "1.7.0"
     }
     repositories {
         google()

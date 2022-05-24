@@ -1,11 +1,11 @@
 import Geolocation from '@react-native-community/geolocation';
+import NotifService from '../../NotificationHelper/NotifService';
 
 export async function getCuurentLocation(props) {
     props.setWeatherStatusAction(true)
 
     Geolocation.getCurrentPosition(
         position => {
-            // console.log("🚀 ~ file: HomeFunction.js ~ line 6 ~ getCuurentLocation ~ position", position)
             const { latitude, longitude } = position.coords;
             props.setLatitudeAction(latitude);
             props.setLongitudeAction(longitude);
@@ -44,7 +44,6 @@ export function getWeatherDetailsPlace(props, latitude, longitude) {
     })
         .then((response) => response.json())
         .then((responseJson) => {
-            // console.log("🚀 ~ file: HomeFunction.js ~ line 31 ~ .then ~ responseJson", responseJson);
             props.setWeatherDetailsAction(responseJson);
             props.setWeatherConditionAction(responseJson.weather[0].main)
             getAllPlace(props, latitude, longitude)
@@ -64,14 +63,12 @@ export function getAllPlace(props, latitude, longitude) {
     })
         .then((response) => response.json())
         .then(async responseJson => {
-            // console.log("🚀 ~ file: HomeFunction.js ~ line 31 ~ .then ~ responseJson", responseJson);
             await responseJson.forEach(function (itm) {
                 itm.distanceCurrentLocation = distance(latitude, longitude, itm.latitude, itm.longitude, "K");
             });
-            //  responseJson.map(obj => ({ ...obj, distanceCurrentLocation: distance(latitude, longitude, obj.latitude, obj.longitude, "K") }))
+            onSetDangerPlacesNotification(responseJson)
             props.setAllPlacesAction(responseJson);
             props.setWeatherStatusAction(false);
-            console.log("🚀 ~ file: HomeFunction.js ~ line", responseJson)
         })
         .catch((error) => {
             // alert(JSON.stringify(error));
@@ -109,6 +106,7 @@ export function checkStatucFunc(props, place) {
     } else if (place.no_injured > 100 && place.no_killed > 0) {
         props.setRiskLevelAction("High")
         props.setDangerStatusAction("DANGER DUE TO KILLS")
+        props.setNotificationStatusAction(true);
     } else {
         props.setRiskLevelAction("Determination On progress")
     }
@@ -117,4 +115,13 @@ export function checkStatucFunc(props, place) {
 export function onClickMapAllView(props) {
     props.navigation.navigate('MapScreen');
 
+}
+
+
+function onSetDangerPlacesNotification(responseJson) {
+    if (responseJson.filter(e => e.no_killed > 0).length > 0) {
+        console.log("This is True Notification")
+        const notif = new NotifService();
+        notif.localSecheduleDangerousNotif();
+    }
 }

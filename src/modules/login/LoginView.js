@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import {
     View,
     StyleSheet,
@@ -11,8 +11,18 @@ import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
 import { Button, TextInput } from '../../components';
 import * as Function from './LoginFunction'
+import NetInfo from "@react-native-community/netinfo";
 
 export default function LoginView(props) {
+    const [isOnline, setOnlineStatus] = useState(false);
+
+    useEffect(() => {
+        const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
+            setOnlineStatus(state.isConnected)
+        });
+
+        return () => removeNetInfoSubscription();
+    }, [isOnline]);
     return (
         <View style={styles.contentView}>
             <ScrollView style={styles.scrollStyle}>

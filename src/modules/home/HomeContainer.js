@@ -12,7 +12,8 @@ import {
     setSinglePlaceAction,
     setRiskLevelAction,
     setDangerStatusAction,
-    setWeatherConditionAction
+    setWeatherConditionAction,
+    setNotificationStatusAction
 } from './HomeState';
 
 import { setSpinnerStatusAction } from '../../commonStore/CommonStore'
@@ -30,6 +31,7 @@ export default compose(
             riskLevel: state.home.riskLevel,
             dangerStatus: state.home.dangerStatus,
             weatherCondition: state.home.weatherCondition,
+            notificationStatus: state.home.notificationStatus, // This Extra Notification Status 
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
         }),
@@ -45,6 +47,7 @@ export default compose(
             setRiskLevelAction: riskLevel => dispatch(setRiskLevelAction(riskLevel)),
             setDangerStatusAction: dangerStatus => dispatch(setDangerStatusAction(dangerStatus)),
             setWeatherConditionAction: weatherCondition => dispatch(setWeatherConditionAction(weatherCondition)),
+            setNotificationStatusAction: notificationStatus => dispatch(setNotificationStatusAction(notificationStatus)),
 
             //common
             setSpinnerStatusAction: status => dispatch(setSpinnerStatusAction(status)),
