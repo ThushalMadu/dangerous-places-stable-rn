@@ -1,11 +1,10 @@
 import { Linking } from "react-native";
 
 export function onClickEditProfile(props) {
-    console.log('ON CLICK')
+    props.navigation.navigate('EditdetailsScreen');
 }
 export function onClickNotification(props) {
     props.navigation.navigate('NotificationScreen');
-
 }
 export async function onClickPrivacyPolicy(props) {
     const supportedURL = "https://support.google.com/googleplay/answer/11416267?hl=en&visit_id=637885903101612874-1960756044&p=data-safety&rd=1";

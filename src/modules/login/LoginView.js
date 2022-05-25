@@ -35,15 +35,15 @@ export default function LoginView(props) {
                             palceHolder={"Enter your Email"}
                             isSecure={false}
                             KeyBoard={'email-address'}
-                            onChangeText={(text) => console.log("first")}
+                            onChangeText={(text) => props.setEmailAction(text)}
                         />
                     </View>
                     <View style={styles.contentMiddleButtonView}>
                         <TextInput
                             palceHolder={"Enter your Password"}
-                            isSecure={false}
+                            isSecure={true}
                             KeyBoard={'default'}
-                            onChangeText={(text) => console.log("first")}
+                            onChangeText={(text) => props.setPasswordAction(text)}
                         />
                     </View>
                 </View>

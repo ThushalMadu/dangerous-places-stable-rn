@@ -67,6 +67,10 @@ export function getAllPlace(props, latitude, longitude) {
                 itm.distanceCurrentLocation = distance(latitude, longitude, itm.latitude, itm.longitude, "K");
             });
             onSetDangerPlacesNotification(responseJson)
+            await responseJson.sort(function (prev, curr) {
+                return prev.distanceCurrentLocation - curr.distanceCurrentLocation;
+            });
+            console.log("🚀 ~ file: HomeFunction.js ~ line 73 ~ responseJson", responseJson)
             props.setAllPlacesAction(responseJson);
             props.setWeatherStatusAction(false);
         })

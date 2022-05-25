@@ -21,3 +21,4 @@ export const danger = require('../images/danger.png');
 export const loaderHome = require('../images/loaderHome.json');
 export const dangerLoader = require('../images/dangerLoader.json');
 export const close = require('../images/close.png');
+export const hikingEdit = require('../images/hikingEdit.png');

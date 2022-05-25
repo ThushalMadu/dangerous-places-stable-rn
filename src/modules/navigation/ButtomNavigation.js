@@ -63,6 +63,11 @@ function SettingStackScreen({ navigation }) {
                 component={NotificationScreen}
                 options={{ headerShown: false }}
             />
+            {/* <ItemStack.Screen
+                name="EditdetailsScreen"
+                component={EditdetailsScreen}
+                options={{ headerShown: false }}
+            /> */}
         </ItemStack.Navigator>
     );
 }

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import StartUpScreen from '../startUp/StartupContainer';
 import LoginScreen from '../login/LoginContainer';
 import ButtomNavigation from './ButtomNavigation';
+import EditdetailsScreen from '../editDetails/EditdetailsContainer'
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function App() {
             <Stack.Navigator>
                 <Stack.Screen name="StartUp" component={StartUpScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="EditdetailsScreen" component={EditdetailsScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="ButtomNavigation" component={ButtomNavigation} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
