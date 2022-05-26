@@ -14,8 +14,8 @@ export async function getCuurentLocation(props) {
         error => {
             console.log(error.code, error.message);
         },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 10000 },
-        // { enableHighAccuracy: false, timeout: 5000, maximumAge: 10000 },
+        // { enableHighAccuracy: true, timeout: 5000, maximumAge: 10000 },
+        { timeout: 5000, },
 
     );
 }

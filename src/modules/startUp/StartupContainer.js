@@ -13,7 +13,8 @@ export default compose(
         state => ({
             //home
             startUpStatus: state.startUp.startUpStatus,
-
+            email: state.login.email,
+            password: state.login.password,
             // common
             spinnerStatus: state.commonStore.spinnerStatus,
         }),

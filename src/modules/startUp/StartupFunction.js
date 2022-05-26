@@ -1,3 +1,7 @@
 export function redirectAnotherpage(props) {
-    props.navigation.navigate('Login');
+    if (props.email != "" || props.password != "") {
+        props.navigation.navigate('ButtomNavigation');
+    } else {
+        props.navigation.navigate('Login');
+    }
 }
